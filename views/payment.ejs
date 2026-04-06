@@ -1,0 +1,111 @@
+<% layout("layouts/boilerplate") %>
+
+<style>
+
+.payment-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.payment-card:hover {
+  transform: translateY(-5px);
+}
+
+.payment-details {
+  font-size: 16px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  color: #555;
+}
+
+.detail-row.total {
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+}
+
+.pay-btn {
+  border-radius: 12px;
+  padding: 12px;
+  font-weight: 600;
+  background: linear-gradient(45deg, #ff5a5f, #ff385c);
+  border: none;
+  color: white;
+  transition: 0.3s;
+}
+
+.pay-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(255, 56, 92, 0.4);
+}
+
+</style>
+
+<div class="row justify-content-center mt-5">
+  <div class="col-6">
+
+    <div class="payment-card">
+
+      <h3 class="text-center mb-4">💳 Payment Page</h3>
+
+      <div class="payment-details">
+
+        <div class="detail-row">
+          <span>Check In</span>
+          <strong><%= checkIn %></strong>
+        </div>
+
+        <div class="detail-row">
+          <span>Check Out</span>
+          <strong><%= checkOut %></strong>
+        </div>
+
+        <hr>
+
+        <div class="detail-row total">
+          <span>Total Amount</span>
+          <strong>₹<%= total %></strong>
+        </div>
+
+      </div>
+
+      <button id="pay-btn" class="btn pay-btn w-100 mt-4">
+        Pay Now 💰
+      </button>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- Razorpay Script -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+const options = {
+  key: "<%= key %>",
+  amount: "<%= total * 100 %>",
+  currency: "INR",
+  name: "BookMyStay",
+  description: "Booking Payment",
+  order_id: "<%= orderId %>",
+
+  handler: function (response) {
+    window.location.href = `/confirm-booking?checkIn=<%= checkIn %>&checkOut=<%= checkOut %>&total=<%= total %>&listingId=<%= listingId %>`;
+  }
+};
+
+const rzp = new Razorpay(options);
+
+document.getElementById("pay-btn").onclick = function (e) {
+  rzp.open();
+  e.preventDefault();
+};
+</script>

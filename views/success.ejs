@@ -1,0 +1,21 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="d-flex justify-content-center align-items-center" style="height: 80vh;">
+  <div class="text-center p-5 shadow rounded bg-white">
+
+    <h2 class="text-success mb-3">🎉 Booking Confirmed!</h2>
+    <p class="mb-2">Your payment was successful.</p>
+    <p class="text-muted">Redirecting to listings...</p>
+
+    <a href="/listings" class="btn btn-danger mt-3">
+      Go to Listings
+    </a>
+
+  </div>
+</div>
+
+<script>
+  setTimeout(() => {
+    window.location.href = "/listings";
+  }, 3000); // 3 seconds
+</script>

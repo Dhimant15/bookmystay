@@ -1,0 +1,116 @@
+<style>
+  .btn-search{
+    background-color: #fe424d;
+    color: #fff;
+    border-radius: 25px;
+    padding: 0 1rem 0 1rem;
+  }
+  .btn-search:hover{
+    background-color: #fe424d;
+    color: #fff;
+  }
+  .btn-search i{
+    display: inline;
+    margin-right: 0.5rem;
+  } 
+  .search-inp{
+    border-radius: 25px;
+    /* background: linear-gradient(to right, #eef2f3, #dfe9f3);  */
+    padding: 0.5rem 3rem 0.5rem 3rem;
+    font-size: 0.9rem;
+  }
+</style>
+
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listings">Explore</a>
+        
+        <% if (currUser) { %>
+          <a class="nav-link" href="/my-bookings">My Bookings 📚</a>
+        <% } %>
+
+        </div>
+      </div>
+
+
+     
+
+
+      <div class="navbar-nav mx-auto">
+       <form action="/listings" method="GET" class="search-bar">
+
+  <input 
+  type="text" 
+  name="search" 
+  placeholder="Search location"
+  value="<%= typeof search !== 'undefined' ? search : '' %>"
+>
+
+<input 
+  type="number" 
+  name="minPrice" 
+  placeholder="Enter Price"
+  value="<%= typeof minPrice !== 'undefined' ? minPrice : '' %>"
+>
+
+  <button type="submit">Search</button>
+
+</form>
+      </div>
+
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings/new">Add new listing</a>
+        <!-- <% if(!currUser) { %>
+          <a class="nav-link" href="/signup"><b>Sign up</b></a>
+          <a class="nav-link" href="/login"><b>Log in</b></a>
+        <% } %>
+        <% if(currUser) {%>
+          <a class="nav-link" href="/logout"><b>Log out</b></a>
+        <% } %> -->
+
+        <div class="navbar-nav ms-auto">
+
+  <% if (currUser) { %>
+
+    <div class="dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+        👤 <%= currUser.username %>
+      </a>
+
+      <ul class="dropdown-menu dropdown-menu-end">
+
+        <li>
+          <a class="dropdown-item" href="/profile">Profile 👤</a>
+        </li>
+
+        <li>
+          <a class="dropdown-item" href="/my-bookings">My Bookings 📚</a>
+        </li>
+
+        <li>
+          <a class="dropdown-item" href="/logout">Logout 🚪</a>
+        </li>
+
+      </ul>
+    </div>
+
+  <% } else { %>
+
+    <a class="nav-link" href="/signup">Sign up</a>
+    <a class="nav-link" href="/login">Log in</a>
+
+  <% } %>
+
+</div>
+
+      </div>
+
+    </div>
+  </div>
+</nav>

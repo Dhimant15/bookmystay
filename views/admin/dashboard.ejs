@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #f5f7fa;
+    }
+    .card {
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .section-title {
+      margin-top: 30px;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container mt-4">
+
+  <h1 class="text-center mb-4">🚀 Admin Dashboard</h1>
+
+  <!-- 📊 Stats -->
+  <div class="row text-center">
+    <div class="col-md-4 mb-3">
+      <div class="card p-3 bg-primary text-white">
+        <h5>Total Users</h5>
+        <h2><%= users.length %></h2>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+      <div class="card p-3 bg-success text-white">
+        <h5>Total Bookings</h5>
+        <h2><%= bookings.length %></h2>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+      <div class="card p-3 bg-dark text-white">
+        <h5>Total Revenue</h5>
+        <h2>₹<%= totalRevenue %></h2>
+      </div>
+    </div>
+  </div>
+
+  <!-- 👤 Users -->
+  <h3 class="section-title">Users</h3>
+
+  <div class="card p-3">
+    <ul class="list-group">
+      <% users.forEach(user => { %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          
+          <div>
+            <strong><%= user.username %></strong> - <%= user.email %>
+          </div>
+
+          <form action="/admin/user/<%= user._id %>?_method=DELETE" method="POST">
+            <button class="btn btn-danger btn-sm">Delete</button>
+          </form>
+
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+
+  <!-- 📅 Bookings -->
+  <h3 class="section-title">Bookings</h3>
+
+  <div class="card p-3">
+    <ul class="list-group">
+      <% bookings.forEach(b => { %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+
+  <div>
+    <strong><%= b.user.username %></strong> booked 
+    "<%= b.listing.title %>" 
+    for <strong>
+    <%= Math.ceil((new Date(b.checkOut) - new Date(b.checkIn)) / (1000 * 60 * 60 * 24)) %> nights
+    </strong> 
+    <span class="text-success">(₹<%= b.total %>)</span>
+  </div>
+
+  <form action="/admin/booking/<%= b._id %>?_method=DELETE" method="POST">
+    <button class="btn btn-danger btn-sm" onclick="confirmCancel(event, '<%= b._id %>')">
+  Cancel
+</button>
+  </form>
+
+</li>
+      <% }) %>
+    </ul>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+function confirmCancel(event, bookingId) {
+    event.preventDefault();
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "This booking will be cancelled!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, cancel it!',
+        cancelButtonText: 'No'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // form submit manually
+            const form = document.createElement("form");
+            form.method = "POST";
+            form.action = `/admin/booking/${bookingId}?_method=DELETE`;
+            document.body.appendChild(form);
+            form.submit();
+        }
+    });
+}
+</script>
+
+</body>
+</html>

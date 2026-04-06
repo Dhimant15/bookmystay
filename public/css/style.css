@@ -1,0 +1,274 @@
+body{
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: linear-gradient(to right, #eef2f3, #dfe9f3); 
+
+}
+
+.container{
+    flex: 1;
+}
+
+/* Navbar */
+.navbar{
+    height: 5rem;
+    background-color: #fff;
+}
+
+.fa-compass{
+    color: #fe434d;
+    font-size: 2rem;
+}
+
+.nav-link{
+    color: #222222 !important;
+}
+
+/* footer */
+.f-info-links a{
+    text-decoration: none;
+    color: #222222;
+}
+
+.f-info-links:hover{
+    text-decoration: underline ;
+}
+
+.f-info-links, .f-info-socials, .f-info-brand{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.f-info-socials i{
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+
+.f-info{
+    text-align: center;
+    height: 8rem;
+    background-color: #dfdfdf;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-evenly;
+}
+
+/*Card*/
+.listing-card{
+  border: none !important;
+  margin-bottom: 2rem;
+  background: linear-gradient(to right, #eef2f3, #dfe9f3) !important;
+  width: 100%;
+  height: 300px;
+  border-radius: 10px;
+}
+
+.listing-card:hover {
+  transform: scale(1.03);
+  transition: 0.3s;
+}
+
+.card-img-top{
+    border-radius: 1rem !important;
+    height: 200px;
+    width: 100%;
+    object-fit: cover !important;
+}
+
+.card-body{
+    padding: 0 !important;
+}
+
+.card-text p{
+    font-weight: 400;
+}
+
+.listing-links{
+    text-decoration: none;
+}
+
+/* Card Effect
+.card-img-overlay{
+     opacity: 0; 
+ } 
+
+.card-img-overlay:hover{
+     opacity: 0.2; 
+     background-color: #fff; 
+} */
+
+.add-btn{
+    background-color: #fe434d !important;
+    border: none !important;
+}
+
+.edit-btn{
+    background-color: #fe434d !important;
+    border: none !important;
+}
+
+.show-img{
+    height: 30vh;
+}
+
+.btns{
+    display: flex;
+}
+
+.show-card{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/*Signup form*/
+.signup{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  padding: 10px 15px;
+  border-radius: 50px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  width: fit-content;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 20px;
+}
+
+.search-bar button {
+  background: #ff385c;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.search-bar button:hover {
+  background: #e03150;
+}
+
+
+/*Booking*/
+/* 🔹 Booking Box */
+.booking-box {
+  width: 100%;              /* 👈 parent column ke equal */
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  transition: 0.3s;
+}
+
+/* 🔥 Hover effect */
+.booking-box:hover {
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+}
+
+/* 🔹 Heading */
+.booking-box h5 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* 🔹 Date input container */
+.date-inputs {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+/* 🔹 Each input */
+.date-inputs div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 🔹 Labels */
+.date-inputs label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+/* 🔹 Inputs */
+.date-inputs input {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  outline: none;
+  transition: 0.2s;
+}
+
+/* 🔥 Input focus */
+.date-inputs input:focus {
+  border-color: #ff385c;
+  box-shadow: 0 0 5px rgba(255,56,92,0.3);
+}
+
+/* 🔹 Book button */
+.book-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #ff385c, #e03150);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* 🔥 Hover button */
+.book-btn:hover {
+  background: linear-gradient(135deg, #e03150, #c81d3a);
+  transform: scale(1.02);
+}
+
+/* 🔹 Responsive */
+@media (max-width: 768px) {
+  .date-inputs {
+    flex-direction: column;
+  }
+}
+
+.card{
+  background: transparent !important;
+  border: none !important;
+}
+
+.booking-card {
+  background: transparent !important;
+  backdrop-filter: blur(10px);
+  border: none;
+  border-radius: 12px;
+}
+
+.dropdown-menu {
+  border-radius: 10px !important;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa !important;
+}
