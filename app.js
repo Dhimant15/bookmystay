@@ -190,6 +190,11 @@ app.post("/bookings/:id/delete", async (req, res) => {
 });
 
 
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
+
+
 app.use((req, res, next) => {
     next(new ExpressError(404, "Page not found!"));
 })
@@ -200,9 +205,7 @@ app.use((err, req, res, next) => {
     // res.status(statusCode).send(message);
 });
 
-app.get("/", (req, res) => {
-    res.redirect("/listings");
-});
+
 
 app.listen(8080, () => {
     console.log("server is listening to port 8080");
