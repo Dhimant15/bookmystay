@@ -4,32 +4,34 @@ const {listingSchema} = require("../schema.js");
 
 //Search Method
 module.exports.index = async (req, res) => {
-  const { search, minPrice } = req.query;
+    res.send("Listings route working");
+}
+//   const { search, minPrice } = req.query;
 
-  let filter = {};
+//   let filter = {};
 
-  // 🔍 Text search (country / title / location)
-  if (search) {
-    filter.$or = [
-      { title: { $regex: search, $options: "i" } },
-      { country: { $regex: search, $options: "i" } },
-      { location: { $regex: search, $options: "i" } }
-    ];
-  }
+//   // 🔍 Text search (country / title / location)
+//   if (search) {
+//     filter.$or = [
+//       { title: { $regex: search, $options: "i" } },
+//       { country: { $regex: search, $options: "i" } },
+//       { location: { $regex: search, $options: "i" } }
+//     ];
+//   }
 
-  // 💰 Exact price search
-  if (minPrice) {
-    filter.price = Number(minPrice);
-  }
+//   // 💰 Exact price search
+//   if (minPrice) {
+//     filter.price = Number(minPrice);
+//   }
 
-  try {
-    const listings = await Listing.find(filter);
-    res.render("listings/index", { listings, search, minPrice });
-  } catch (err) {
-    console.log(err);
-    res.send("Error");
-  }
-};
+//   try {
+//     const listings = await Listing.find(filter);
+//     res.render("listings/index", { listings, search, minPrice });
+//   } catch (err) {
+//     console.log(err);
+//     res.send("Error");
+//   }
+// };
 
 module.exports.renderNewForm = (req, res) => {
     res.render("listings/new");
