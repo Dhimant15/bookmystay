@@ -24,7 +24,7 @@ module.exports.index = async (req, res) => {
 
   try {
     const listings = await Listing.find(filter);
-    res.render("listings/index.ejs", { listings, search, minPrice });
+    res.render("listings/index", { listings, search, minPrice });
   } catch (err) {
     console.log(err);
     res.send("Error");
@@ -32,7 +32,7 @@ module.exports.index = async (req, res) => {
 };
 
 module.exports.renderNewForm = (req, res) => {
-    res.render("listings/new.ejs");
+    res.render("listings/new");
 }
 
 module.exports.showListing = async (req, res) =>{
@@ -49,7 +49,7 @@ module.exports.showListing = async (req, res) =>{
         return res.redirect("/listings");
     }
     console.log(listing);
-    res.render("listings/show.ejs", {listing});
+    res.render("listings/show", {listing});
 }
 
 module.exports.createListing = async (req, res, next) => {
@@ -72,7 +72,7 @@ module.exports.renderEditForm = async (req, res) => {
         req.flash("error", "Listing does not exist!");
         return res.redirect("/listings");
     }
-    res.render("listings/edit.ejs", {listing});
+    res.render("listings/edit", {listing});
 }
 
 module.exports.updateListing = async (req, res) => {
