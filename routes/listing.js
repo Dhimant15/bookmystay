@@ -92,4 +92,16 @@ router.get(
     wrapAsync(listingController.renderEditForm));
 
 
+    // 👇 tumhare existing routes upar honge
+
+router.get("/seed", async (req, res) => {
+  const initData = require("../init/data");
+  const Listing = require("../models/listing"); // 👈 ensure ye hai
+
+  await Listing.deleteMany({});
+  await Listing.insertMany(initData.data);
+
+  res.send("Database seeded!");
+});
+
 module.exports = router;
