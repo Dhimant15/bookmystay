@@ -104,4 +104,8 @@ router.get("/seed", async (req, res) => {
   res.send("Database seeded!");
 });
 
+router.get("/test", (req, res) => {
+    res.send("Test working");
+});
+
 module.exports = router;
