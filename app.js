@@ -29,9 +29,9 @@ const razorpay = new Razorpay({
 
 
 
-const listingRouter = require("./routes/listing.js");
-const reviewRouter = require("./routes/review.js");
-const userRouter = require("./routes/user.js");
+const listingRouter = require("./routes/listing");
+const reviewRouter = require("./routes/review");
+const userRouter = require("./routes/user");
 
 const MONGO_URL = process.env.MONGO_URL;
 
