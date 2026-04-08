@@ -21,6 +21,7 @@ const {listingSchema} = require("../schema.js");
   }
 
   const listings = await Listing.find(filter);
+  console.log("Listings Data:", listings);
   res.render("listings/index", { listings, search, minPrice });
 };
 
